@@ -1,14 +1,12 @@
 import React from "react";
 
 const Button = (props) => {
+  // Destructure all fields
+  const { type, classes, icon, title, submit } = props;
   return (
     <>
-      <button
-        type={props.type}
-        className={props.classes}
-        onSubmit={(e) => props.submit()}
-      >
-        {props.title}
+      <button type={type} className={classes} onClick={(e) => submit(e)}>
+        {icon} {title}
       </button>
     </>
   );

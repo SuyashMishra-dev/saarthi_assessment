@@ -1,7 +1,10 @@
-import React from "react";
 import Button from "./Button";
+import { connect } from "react-redux";
+import { loadingFormHide } from "../../redux/action";
+import React from "react";
 
-export const Form = () => {
+export const Form = (props) => {
+  // Destructure all fields
   const {
     name,
     employeeId,
@@ -11,72 +14,98 @@ export const Form = () => {
     submitBtn,
     clearForm,
     inputChange,
+    loadingFormHide,
   } = props;
   return (
-    <div>
-      <form>
+    <div className="modal-container">
+      <form className="modal">
         <div>
-          <label>Name</label>
-          <input
-            type="text"
-            onChange={(e) => inputChange()}
-            name="name"
-            value={name}
-          />
+          <button onClick={loadingFormHide} className="close-btn">
+            <i>
+              <strong>X</strong>
+            </i>
+          </button>
         </div>
-        <div>
-          <label>Employee ID</label>
-          <input
-            type="number"
-            onChange={(e) => inputChange()}
-            name="employeeId"
-            value={employeeId}
-          />
-        </div>
-        <div>
-          <label>Department</label>
-          <input
-            type="text"
-            onChange={(e) => inputChange()}
-            name="department"
-            value={department}
-          />
-        </div>
-        <div>
-          <label>Email Id</label>
-          <input
-            type="email"
-            onChange={(e) => inputChange()}
-            name="email"
-            value={email}
-          />
-        </div>
-        <div>
-          <label>Date Of Joining</label>
-          <input
-            type="date"
-            onChange={(e) => inputChange()}
-            name="doj"
-            value={doj}
-          />
-        </div>
-        <div>
-          <Button
-            type="submit"
-            classes="light-btn"
-            submit={submitBtn}
-            title="Submit"
-          />
-          <Button
-            type="reset"
-            classes="dark-btn"
-            submit={clearForm}
-            title="Clear"
-          />
+        <h3 className="center">Fill Employee Details</h3>
+        <div className="form-body">
+          <div>
+            <label>Name</label>
+            <input
+              type="text"
+              onChange={inputChange}
+              name="name"
+              value={name}
+              required
+            />
+          </div>
+          <div>
+            <label>Employee ID</label>
+            <input
+              type="number"
+              onChange={inputChange}
+              name="employeeId"
+              value={employeeId}
+              required
+            />
+          </div>
+          <div>
+            <label>Department</label>
+            <select
+              onChange={inputChange}
+              name="department"
+              value={department}
+              required
+            >
+              <option value="">Select Department</option>
+              <option value="HR">HR</option>
+              <option value="Research">Research</option>
+              <option value="Front-End">Front-End</option>
+              <option value="Back-End">Back-End</option>
+              <option value="Full-Stack">Full-Stack</option>
+            </select>
+          </div>
+          <div>
+            <label>Email Id</label>
+            <input
+              type="email"
+              onChange={inputChange}
+              name="email"
+              value={email}
+              required
+            />
+          </div>
+          <div>
+            <label>Date Of Joining</label>
+            <input
+              type="date"
+              onChange={inputChange}
+              name="doj"
+              value={doj}
+              required
+            />
+          </div>
+          <div>
+            <Button
+              type="submit"
+              classes="light-btn"
+              submit={submitBtn}
+              title="Submit"
+            />
+            <Button
+              type="reset"
+              classes="dark-btn"
+              submit={clearForm}
+              title="Clear"
+            />
+          </div>
         </div>
       </form>
     </div>
   );
 };
 
-export default Form;
+const mapDispatchToProps = {
+  loadingFormHide,
+};
+
+export default connect(null, mapDispatchToProps)(Form);
