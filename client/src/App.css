@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Baloo Paaji 2", cursive;
+}
+/* font-family: "Poppins", sans-serif; */
+
+/* Utilities classes */
+
+.light-btn {
+  display: inline-block;
+  background: rgb(240, 184, 33);
+  color: #333;
+  padding: 0.5rem 1.3rem;
+}
+
+.light-btn:hover {
+  background: #333;
+  color: #f4f4f4;
+}
+
+.dark-btn {
+  display: inline-block;
+  background: rgb(0, 0, 0);
+  color: #fff;
+  padding: 0.5rem 1.3rem;
+}
+
+.dark-btn:hover {
+  background: rgb(255, 207, 75);
+  color: #f4f4f4;
+}
+
+.size-lg {
+  font-size: 4rem;
+}
+
+.size-md {
+  font-size: 2.5rem;
+}
+
+.size-sm {
+  font-size: 1rem;
+}
+
+.size-xm {
+  font-size: 0.7rem;
+}
