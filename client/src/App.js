@@ -6,6 +6,8 @@ import nextId from "react-id-generator";
 import React, { Component } from "react";
 import { submitForm, loadingFormShow, loadingFormHide } from "./redux/action";
 import Table from "./components/common/Table";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends Component {
   constructor(props) {
@@ -50,26 +52,43 @@ class App extends Component {
           this.state.email === "" &&
           this.state.doj === ""
         ) {
-          alert("Check Input Credentials");
+          toast.error("Check Input Credentials!", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        } else if (this.state.name.length < 3) {
+          toast.error("Name must be have 3 characters.", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        } else if (this.state.name === "") {
+          toast.error("Name field required", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        } else if (this.state.employeeId === "") {
+          toast.error("Employee id required", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
+        } else if (this.state.department === "") {
+          toast.error("Department field required", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         } else if (
           !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
             this.state.email
           )
         ) {
-          alert(`${this.state.email} is not a valid email.`);
-        } else if (this.state.name.length < 3) {
-          alert("Name must be have 3 characters.");
-        } else if (this.state.name === "") {
-          alert("Name field required");
-        } else if (this.state.employeeId === "") {
-          alert("Employee id required");
-        } else if (this.state.department === "") {
-          alert("Department field required");
+          toast.error(`"${this.state.email}" is not a valid email.`, {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         } else if (this.state.doj === "") {
-          alert("Select date of joining");
+          toast.error("Select date of joining", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
         } else {
           // Dispatch data to action
           submitForm(this.state);
+          toast.success("Employee added successfully.", {
+            position: toast.POSITION.BOTTOM_RIGHT,
+          });
 
           // Clear all input fields
           this.clearFormInputs();
@@ -107,13 +126,22 @@ class App extends Component {
       <>
         <div className="add-employee">
           <Button
-            classes="light-btn emp-btn"
+            classes="light-btn emp-btn size-sm"
             submit={this.loadForm}
             icon={<i className="fas fa-user-plus"></i>}
             title="New Employee"
             type="button"
           />
+          <ToastContainer />
         </div>
+        {!formLoading && data.length === 0 ? (
+          <div className="video-container">
+            <video width="600" height="450" loop autoplay>
+              <source src="employee.mp4" type="video/mp4"></source>
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        ) : null}
         {formLoading ? (
           <From
             name={this.state.name}

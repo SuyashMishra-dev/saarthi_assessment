@@ -16,6 +16,7 @@ body {
   border: none;
   border-radius: 5px;
   box-shadow: none;
+  transition: all 0.4s;
 }
 
 .light-btn:hover {
@@ -40,6 +41,7 @@ body {
   box-shadow: none;
   border-radius: 5px;
   padding: 0.5rem 1.3rem;
+  transition: all 0.5s;
 }
 
 .dark-btn:hover {
@@ -67,11 +69,30 @@ body {
   text-align: center;
 }
 
+/* Add Employee */
+
+.add-employee button {
+  padding: 1rem 2rem;
+  background: #ed5c69;
+  font-weight: bold;
+  transition: all 0.5s;
+}
+
+.add-employee button:hover {
+  box-shadow: 0 1.5px 2px 0.5px #333;
+  background: #f55765;
+}
+
 /* Delete button */
 .del-btn {
   background: rgba(255, 255, 255, 0);
   border: none;
-  color: aqua;
+  color: rgb(107, 226, 226);
+  transition: all 0.5s;
+}
+.del-btn:hover {
+  font-size: 1.2rem;
+  color: rgb(38, 144, 214);
 }
 
 /* Modal */
@@ -150,6 +171,17 @@ input::-webkit-inner-spin-button {
   text-align: right;
   margin: 8px 8px 0 0;
   padding: 3px;
+  transition: all 0.3s;
+}
+
+.modal .close-btn:hover {
+  color: rgb(199, 46, 46);
+}
+
+.modal .close-btn:active {
+  border: none;
+  outline: none;
+  color: rgb(199, 46, 46);
 }
 
 .modal h3 {
@@ -157,15 +189,34 @@ input::-webkit-inner-spin-button {
   padding: 0;
 }
 
+.video-container {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Media queries for different viewport screen */
 @media (max-width: 1024px) {
   .modal {
     width: 40vw;
   }
+  video {
+    width: 400px;
+    height: 300px;
+  }
 }
 @media (max-width: 768px) {
   .modal {
     width: 55vw;
+  }
+  .add-employee button {
+    padding: 0.7rem 1.6rem;
+    background: #ed5c69;
+  }
+  video {
+    width: 400px;
+    height: 300px;
   }
 }
 @media (max-width: 500px) {
@@ -177,5 +228,14 @@ input::-webkit-inner-spin-button {
   }
   .modal div:nth-child(5) input {
     margin-bottom: 0.3rem;
+  }
+  .add-employee button {
+    padding: 0.5rem 1rem;
+    background: #ed5c69;
+    font-weight: lighter;
+  }
+  video {
+    width: 300px;
+    height: 200px;
   }
 }
